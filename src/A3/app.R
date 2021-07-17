@@ -1,3 +1,12 @@
+######
+## Submission for team T1-4 (Knowall) : 
+# Wenlu Chen
+# Minghao Du
+# Yanli Li
+# Han Liu
+# Mengying Zhao
+######
+
 if(!require(shiny)) {
     install.packages("shiny")
 }
@@ -146,6 +155,8 @@ server <- function(input, output, session) {
         mutate(lngH = lng + resLim)
     
     l <- reactiveValues(loadFlag = FALSE)
+    mapbox <- "pk.eyJ1IjoiZG1pbmdoYW8iLCJhIjoiY2tyM251MXhrMm5tODJwcnVkcDZibGdlcSJ9.oboYrRkjhzoUmbBQvJR-vQ"
+    set_token(mapbox)
     
     output$plot1 = renderPlotly({
         year <- input$year
@@ -338,7 +349,8 @@ server <- function(input, output, session) {
     })
     
     output$mapdeck = renderMapdeck({
-        m <- mapdeck(style = mapdeck_style('dark'),
+        m <- mapdeck(
+            style = mapdeck_style('dark'),
                 location = c(-76.590001, 39.290001),
                 zoom = 0,
                 pitch = 0,
